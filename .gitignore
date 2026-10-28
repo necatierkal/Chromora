@@ -1,0 +1,18 @@
+# Godot 4 editor cache and import data
+.godot/
+*.translation
+
+# Android build artifacts and keystores (sensitive)
+android/*.apk
+android/*.aab
+android/*.keystore
+android/*.jks
+!android/.gitkeep
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but since it is a text-based format, you can also edit it.
+
+config_version=5
+
+[application]
+
+config/name="Chromora"
+config/description="Offline Color Sort Puzzle for Android"
+config/version="1.0.0"
+run/main_scene="res://src/ui/MainMenu.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.0588235, 0.0705882, 0.12549, 1)
+config/icon="res://icon.svg"
+
+[autoload]
+
+Constants="*res://src/core/Constants.gd"
+SaveManager="*res://src/core/SaveManager.gd"
+ThemeManager="*res://src/core/ThemeManager.gd"
+AudioManager="*res://src/core/AudioManager.gd"
+DailyQuestManager="*res://src/core/DailyQuestManager.gd"
+GameManager="*res://src/core/GameManager.gd"
+AndroidLifecycleHandler="*res://src/core/AndroidLifecycleHandler.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
+window/size/mode=0
+window/size/resizable=true
+window/size/borderless=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.0588235, 0.0705882, 0.12549, 1)

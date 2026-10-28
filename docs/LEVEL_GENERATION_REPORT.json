@@ -1,0 +1,12 @@
+{
+  "total_levels": 1000,
+  "solvable_count": 1000,
+  "periods": 20,
+  "difficulties": {
+    "Kolay": 141,
+    "Orta": 245,
+    "Zor": 614
+  },
+  "par_moves_avg": 12.45,
+  "generation_time_sec": 40.87
+}

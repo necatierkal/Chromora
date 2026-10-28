@@ -1,0 +1,498 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/ui/GameScreen.gd" id="1_gamescreen"]
+[ext_resource type="Script" path="res://src/ui/modals/WinModal.gd" id="2_winmodal"]
+[ext_resource type="Script" path="res://src/ui/modals/PauseModal.gd" id="3_pausemodal"]
+[ext_resource type="Script" path="res://src/ui/modals/TutorialModal.gd" id="4_tutorialmodal"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gamescreen")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0470588, 0.0666667, 0.121569, 1)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 220.0
+grow_horizontal = 2
+
+[node name="Header" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PauseBtn" type="Button" parent="HUD/Header"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏸"
+
+[node name="LevelInfo" type="VBoxContainer" parent="HUD/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="HUD/Header/LevelInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Bölüm 1"
+horizontal_alignment = 1
+
+[node name="PeriodLabel" type="Label" parent="HUD/Header/LevelInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.56, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Temel Sıralama"
+horizontal_alignment = 1
+
+[node name="MovesCounter" type="VBoxContainer" parent="HUD/Header"]
+layout_mode = 2
+alignment = 1
+
+[node name="MovesLabel" type="Label" parent="HUD/Header/MovesCounter"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Hamle: 0 / 10"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="HUD/Header"]
+layout_mode = 2
+alignment = 1
+
+[node name="Star1" type="Label" parent="HUD/Header/Stars"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.88, 0.28, 1)
+theme_override_font_sizes/font_size = 36
+text = "★"
+
+[node name="Star2" type="Label" parent="HUD/Header/Stars"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.88, 0.28, 1)
+theme_override_font_sizes/font_size = 36
+text = "★"
+
+[node name="Star3" type="Label" parent="HUD/Header/Stars"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.88, 0.28, 1)
+theme_override_font_sizes/font_size = 36
+text = "★"
+
+[node name="RestartBtn" type="Button" parent="HUD/Header"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "↺"
+
+[node name="Board" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 220.0
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TubeContainer" type="HBoxContainer" parent="Board"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PowerUpDock" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -180.0
+offset_right = -32.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="UndoBtn" type="Button" parent="PowerUpDock"]
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+text = "Geri Al"
+
+[node name="Badge" type="Label" parent="PowerUpDock/UndoBtn"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+
+[node name="HintBtn" type="Button" parent="PowerUpDock"]
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+text = "İpucu"
+
+[node name="Badge" type="Label" parent="PowerUpDock/HintBtn"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="ExtraBtn" type="Button" parent="PowerUpDock"]
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+text = "+ Tüp"
+
+[node name="Badge" type="Label" parent="PowerUpDock/ExtraBtn"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+
+[node name="ShuffleBtn" type="Button" parent="PowerUpDock"]
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+text = "Karıştır"
+
+[node name="Badge" type="Label" parent="PowerUpDock/ShuffleBtn"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="RevealBtn" type="Button" parent="PowerUpDock"]
+custom_minimum_size = Vector2(170, 110)
+layout_mode = 2
+text = "Rengi Aç"
+
+[node name="Badge" type="Label" parent="PowerUpDock/RevealBtn"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+
+[node name="Modals" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WinModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_winmodal")
+
+[node name="Overlay" type="ColorRect" parent="Modals/WinModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="PanelContainer" parent="Modals/WinModal"]
+custom_minimum_size = Vector2(700, 560)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -280.0
+offset_right = 350.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/WinModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Modals/WinModal/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Bölüm Tamamlandı!"
+horizontal_alignment = 1
+
+[node name="StarRow" type="HBoxContainer" parent="Modals/WinModal/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Star1" type="Label" parent="Modals/WinModal/Panel/VBox/StarRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "★"
+
+[node name="Star2" type="Label" parent="Modals/WinModal/Panel/VBox/StarRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "★"
+
+[node name="Star3" type="Label" parent="Modals/WinModal/Panel/VBox/StarRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "★"
+
+[node name="StatsLabel" type="Label" parent="Modals/WinModal/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Yapılan Hamle: 6
+Hedef Par: 6"
+horizontal_alignment = 1
+
+[node name="BtnRow" type="HBoxContainer" parent="Modals/WinModal/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MapBtn" type="Button" parent="Modals/WinModal/Panel/VBox/BtnRow"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+text = "Harita"
+
+[node name="ReplayBtn" type="Button" parent="Modals/WinModal/Panel/VBox/BtnRow"]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+text = "Tekrar"
+
+[node name="NextBtn" type="Button" parent="Modals/WinModal/Panel/VBox/BtnRow"]
+custom_minimum_size = Vector2(240, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Sonraki Bölüm ▶"
+
+[node name="PauseModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_pausemodal")
+
+[node name="Overlay" type="ColorRect" parent="Modals/PauseModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Panel" type="PanelContainer" parent="Modals/PauseModal"]
+custom_minimum_size = Vector2(600, 480)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -240.0
+offset_right = 300.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/PauseModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Title" type="Label" parent="Modals/PauseModal/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Oyun Duraklatıldı"
+horizontal_alignment = 1
+
+[node name="ResumeBtn" type="Button" parent="Modals/PauseModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "Devam Et ▶"
+
+[node name="RestartBtn" type="Button" parent="Modals/PauseModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "Bölümü Yeniden Başlat ↺"
+
+[node name="MapBtn" type="Button" parent="Modals/PauseModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "Bölüm Haritası"
+
+[node name="HomeBtn" type="Button" parent="Modals/PauseModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "Ana Menü"
+
+[node name="TutorialModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_tutorialmodal")
+
+[node name="Overlay" type="ColorRect" parent="Modals/TutorialModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="Modals/TutorialModal"]
+custom_minimum_size = Vector2(720, 520)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -260.0
+offset_right = 360.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/TutorialModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Modals/TutorialModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.88, 0.28, 1)
+theme_override_font_sizes/font_size = 36
+text = "✨ YENİ MEKANİK KEŞFEDİLDİ!"
+horizontal_alignment = 1
+
+[node name="PeriodBadge" type="Label" parent="Modals/TutorialModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Kilitli Tüpler (Bölüm 51)"
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="Modals/TutorialModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Kilitli tüpler belirli hamleden sonra açılır."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TipPanel" type="PanelContainer" parent="Modals/TutorialModal/Panel/VBox"]
+layout_mode = 2
+
+[node name="TipLabel" type="Label" parent="Modals/TutorialModal/Panel/VBox/TipPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "💡 Strateji: Tüpleri dikkatlice planla."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ConfirmBtn" type="Button" parent="Modals/TutorialModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Anladım, Başla! ▶"
+
+[connection signal="pressed" from="HUD/Header/PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="HUD/Header/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="PowerUpDock/UndoBtn" to="." method="_on_undo_btn_pressed"]
+[connection signal="pressed" from="PowerUpDock/HintBtn" to="." method="_on_hint_btn_pressed"]
+[connection signal="pressed" from="PowerUpDock/ExtraBtn" to="." method="_on_extra_tube_btn_pressed"]
+[connection signal="pressed" from="PowerUpDock/ShuffleBtn" to="." method="_on_shuffle_btn_pressed"]
+[connection signal="pressed" from="PowerUpDock/RevealBtn" to="." method="_on_color_reveal_btn_pressed"]
+[connection signal="pressed" from="Modals/WinModal/Panel/VBox/BtnRow/MapBtn" to="Modals/WinModal" method="_on_map_btn_pressed"]
+[connection signal="pressed" from="Modals/WinModal/Panel/VBox/BtnRow/ReplayBtn" to="Modals/WinModal" method="_on_replay_btn_pressed"]
+[connection signal="pressed" from="Modals/WinModal/Panel/VBox/BtnRow/NextBtn" to="Modals/WinModal" method="_on_next_btn_pressed"]
+[connection signal="pressed" from="Modals/PauseModal/Panel/VBox/ResumeBtn" to="Modals/PauseModal" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="Modals/PauseModal/Panel/VBox/RestartBtn" to="Modals/PauseModal" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Modals/PauseModal/Panel/VBox/MapBtn" to="Modals/PauseModal" method="_on_map_btn_pressed"]
+[connection signal="pressed" from="Modals/PauseModal/Panel/VBox/HomeBtn" to="Modals/PauseModal" method="_on_home_btn_pressed"]
+[connection signal="pressed" from="Modals/TutorialModal/Panel/VBox/ConfirmBtn" to="Modals/TutorialModal" method="_on_confirm_btn_pressed"]

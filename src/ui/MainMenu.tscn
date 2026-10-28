@@ -1,0 +1,438 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/ui/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Script" path="res://src/ui/modals/DailyQuestsModal.gd" id="2_daily"]
+[ext_resource type="Script" path="res://src/ui/modals/ThemesModal.gd" id="3_themes"]
+[ext_resource type="Script" path="res://src/ui/modals/SettingsModal.gd" id="4_settings"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0470588, 0.0666667, 0.121569, 1)
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 100.0
+offset_right = -60.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="LogoArea" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Title" type="Label" parent="Menu/LogoArea"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 76
+text = "CHROMORA"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Menu/LogoArea"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Renk Sıralama Bulmacası"
+horizontal_alignment = 1
+
+[node name="ProfileCard" type="PanelContainer" parent="Menu"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Menu/ProfileCard"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LevelSummary" type="Label" parent="Menu/ProfileCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Mevcut İlerleme: Bölüm 1 / 1000"
+horizontal_alignment = 1
+
+[node name="StarsLabel" type="Label" parent="Menu/ProfileCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99, 0.88, 0.28, 1)
+theme_override_font_sizes/font_size = 26
+text = "★ Toplam Kazanılan Yıldız: 0"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ContinueBtn" type="Button" parent="Menu/Buttons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Devam Et ▶"
+
+[node name="LevelsBtn" type="Button" parent="Menu/Buttons"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Bölüm Haritası (1000 Bölüm)"
+
+[node name="DailyBtn" type="Button" parent="Menu/Buttons"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Günlük Görevler"
+
+[node name="Badge" type="Label" parent="Menu/Buttons/DailyBtn"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 54.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.99, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+text = "!"
+horizontal_alignment = 1
+
+[node name="ThemesBtn" type="Button" parent="Menu/Buttons"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Görsel Temalar (7 Tema)"
+
+[node name="SettingsBtn" type="Button" parent="Menu/Buttons"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Ayarlar & Erişilebilirlik"
+
+[node name="Modals" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DailyQuestsModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_daily")
+
+[node name="Overlay" type="ColorRect" parent="Modals/DailyQuestsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="Modals/DailyQuestsModal"]
+custom_minimum_size = Vector2(860, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -450.0
+offset_right = 430.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/DailyQuestsModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Modals/DailyQuestsModal/Panel/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Modals/DailyQuestsModal/Panel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "Günlük Görevler (Çevrimdışı)"
+
+[node name="CloseBtn" type="Button" parent="Modals/DailyQuestsModal/Panel/VBox/Header"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "✕"
+
+[node name="Scroll" type="ScrollContainer" parent="Modals/DailyQuestsModal/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestList" type="VBoxContainer" parent="Modals/DailyQuestsModal/Panel/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="ThemesModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_themes")
+
+[node name="Overlay" type="ColorRect" parent="Modals/ThemesModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="Modals/ThemesModal"]
+custom_minimum_size = Vector2(860, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -450.0
+offset_right = 430.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/ThemesModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Modals/ThemesModal/Panel/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Modals/ThemesModal/Panel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "Görsel Temalar"
+
+[node name="CloseBtn" type="Button" parent="Modals/ThemesModal/Panel/VBox/Header"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "✕"
+
+[node name="Scroll" type="ScrollContainer" parent="Modals/ThemesModal/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ThemeGrid" type="GridContainer" parent="Modals/ThemesModal/Panel/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="SettingsModal" type="Control" parent="Modals"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_settings")
+
+[node name="Overlay" type="ColorRect" parent="Modals/SettingsModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="Modals/SettingsModal"]
+custom_minimum_size = Vector2(860, 920)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -460.0
+offset_right = 430.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Modals/SettingsModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Modals/SettingsModal/Panel/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Modals/SettingsModal/Panel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "Ayarlar & Erişilebilirlik"
+
+[node name="CloseBtn" type="Button" parent="Modals/SettingsModal/Panel/VBox/Header"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "✕"
+
+[node name="Content" type="VBoxContainer" parent="Modals/SettingsModal/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Audio" type="VBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MasterRow" type="HBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/MasterRow"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Genel Ses:"
+
+[node name="Slider" type="HSlider" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/MasterRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="MusicRow" type="HBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/MusicRow"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Müzik Sesi:"
+
+[node name="Slider" type="HSlider" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/MusicRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="SfxRow" type="HBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/SfxRow"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Efekt Sesi:"
+
+[node name="Slider" type="HSlider" parent="Modals/SettingsModal/Panel/VBox/Content/Audio/SfxRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Haptic" type="HBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content"]
+layout_mode = 2
+
+[node name="Check" type="CheckBox" parent="Modals/SettingsModal/Panel/VBox/Content/Haptic"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Titreşim (Haptic Feedback)"
+
+[node name="A11y" type="VBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="A11yHeader" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/A11y"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "Erişilebilirlik Seçenekleri"
+
+[node name="SymbolCheck" type="CheckBox" parent="Modals/SettingsModal/Panel/VBox/Content/A11y"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Toplarda Renk Sembolleri Göster (Renk Körü Modu)"
+
+[node name="ContrastCheck" type="CheckBox" parent="Modals/SettingsModal/Panel/VBox/Content/A11y"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Yüksek Kontrast Modu"
+
+[node name="MotionCheck" type="CheckBox" parent="Modals/SettingsModal/Panel/VBox/Content/A11y"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Azaltılmış Animasyon Hareketi"
+
+[node name="Stats" type="VBoxContainer" parent="Modals/SettingsModal/Panel/VBox/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatsHeader" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.74, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "İstatistikler"
+
+[node name="StatsText" type="Label" parent="Modals/SettingsModal/Panel/VBox/Content/Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Toplam Hamle: 0 | Oynanan Bölüm: 0"
+
+[connection signal="pressed" from="Menu/Buttons/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="Menu/Buttons/LevelsBtn" to="." method="_on_levels_btn_pressed"]
+[connection signal="pressed" from="Menu/Buttons/DailyBtn" to="." method="_on_daily_btn_pressed"]
+[connection signal="pressed" from="Menu/Buttons/ThemesBtn" to="." method="_on_themes_btn_pressed"]
+[connection signal="pressed" from="Menu/Buttons/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="Modals/DailyQuestsModal/Panel/VBox/Header/CloseBtn" to="Modals/DailyQuestsModal" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="Modals/ThemesModal/Panel/VBox/Header/CloseBtn" to="Modals/ThemesModal" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="Modals/SettingsModal/Panel/VBox/Header/CloseBtn" to="Modals/SettingsModal" method="_on_close_btn_pressed"]
+[connection signal="value_changed" from="Modals/SettingsModal/Panel/VBox/Content/Audio/MasterRow/Slider" to="Modals/SettingsModal" method="_on_master_slider_changed"]
+[connection signal="value_changed" from="Modals/SettingsModal/Panel/VBox/Content/Audio/MusicRow/Slider" to="Modals/SettingsModal" method="_on_music_slider_changed"]
+[connection signal="value_changed" from="Modals/SettingsModal/Panel/VBox/Content/Audio/SfxRow/Slider" to="Modals/SettingsModal" method="_on_sfx_slider_changed"]
+[connection signal="toggled" from="Modals/SettingsModal/Panel/VBox/Content/Haptic/Check" to="Modals/SettingsModal" method="_on_haptic_toggled"]
+[connection signal="toggled" from="Modals/SettingsModal/Panel/VBox/Content/A11y/SymbolCheck" to="Modals/SettingsModal" method="_on_symbol_toggled"]
+[connection signal="toggled" from="Modals/SettingsModal/Panel/VBox/Content/A11y/ContrastCheck" to="Modals/SettingsModal" method="_on_contrast_toggled"]
+[connection signal="toggled" from="Modals/SettingsModal/Panel/VBox/Content/A11y/MotionCheck" to="Modals/SettingsModal" method="_on_motion_toggled"]
